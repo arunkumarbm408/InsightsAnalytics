@@ -5,7 +5,7 @@ const doc = {
     title: 'Insight Engine API',
     description: 'Auto-generated Swagger documentation'
   },
-  host: 'localhost:5000',
+  host: process.env.SWAGGER_HOST,
   schemes: ['http','https'],
 };
 
