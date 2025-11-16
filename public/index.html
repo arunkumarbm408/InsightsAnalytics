@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Business Insights Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f3f4f6;
+    }
+    h1 {
+      color: #333;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .metric {
+      font-weight: bold;
+      color: #007bff;
+    }
+    .type { color: #10b981; font-weight: bold; }
+    .action { margin-top: 10px; color: #ef4444; }
+  </style>
+</head>
+<body>
+
+  <h1>📊 Business Insights</h1>
+  <button onclick="loadInsights()">Load Insights</button>
+
+  <div id="insights"></div>
+
+  <script>
+    async function loadInsights() {
+      const res = await fetch("http://localhost:5000/api/insights/business");
+      const data = await res.json();
+      
+      const container = document.getElementById("insights");
+      container.innerHTML = "";
+
+      data?.insights?.forEach(insight => {
+        container.innerHTML += `
+          <div class="card">
+            <div class="type">${insight.type}</div>
+            <div class="metric">${insight.metric}</div>
+            <p><strong>Page: </strong>${insight.page}</p>
+            <p><strong>Change: </strong>${insight.change}</p>
+            <p><strong>Business Insight:</strong> ${insight.businessInsight}</p>
+            <p class="action"><strong>Suggested Action:</strong> ${insight.suggestedAction}</p>
+          </div>
+        `;
+      });
+    }
+  </script>
+
+</body>
+</html>
