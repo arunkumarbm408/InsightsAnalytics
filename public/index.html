@@ -35,7 +35,7 @@
 
   <script>
     async function loadInsights() {
-      const res = await fetch(`${process.env.HOST}api/insights/business`);
+      const res = await fetch(`https://insight-engine-5f7e.onrender.com/api/insights/business`);
       const data = await res.json();
       
       const container = document.getElementById("insights");
